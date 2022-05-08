@@ -1,0 +1,14 @@
+<div class="row  border-bottom">
+    <div class="col-lg-12">
+        <div class="tab_title">
+            <ul class="nav nav-pills">
+                <li {% if current == "index" %} class="current" {% endif %}>
+                    <a href="{{ buildUrl('/analyse/index') }}">地图显示</a>
+                </li>
+                <li {% if current == "line" %} class="current" {% endif %}>
+                    <a href="{{ buildUrl('/analyse/line') }}">路线显示</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
