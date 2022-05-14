@@ -26,7 +26,7 @@
         <view class="goods-info-fx">
             <image src='/images/qd.png'/>
             <button open-type="share">分享</button>
-            <text>分享有赏</text>
+            <text>分享商品</text>
         </view>
     </view>
     <view class="goods-des-info">

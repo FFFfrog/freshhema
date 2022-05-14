@@ -62,7 +62,7 @@ page {
 }
 
 .save-btn {
-    background-color: #e64340;
+    background-color: #77B5C7;
     color: #fff;
 }
 

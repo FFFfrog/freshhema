@@ -53,7 +53,7 @@ page {
 }
 
 .order-status .right-text .red {
-    color: #e64340;
+    color: #77B5C7;
 }
 
 .order-status .right-text .des {
@@ -198,7 +198,7 @@ page {
 
 .confirm-btn {
     background: #ffffff;
-    border: 1rpx solid #e64340;
+    border: 1rpx solid #77B5C7;
     border-radius: 6rpx;
     width: 180rpx;
     height: 60rpx;
@@ -206,7 +206,7 @@ page {
     text-align: center;
     margin: 20rpx 30rpx 20rpx auto;
     font-size: 26rpx;
-    color: #e64340;
+    color: #77B5C7;
     text-align: center;
 }
 
@@ -318,7 +318,7 @@ page {
     text-align: center;
     height: 100%;
     line-height: 100rpx;
-    background-color: #e64340;
+    background-color: #77B5C7;
     font-size: 32rpx;
     color: #ffffff;
     border-radius: 0;
@@ -335,6 +335,6 @@ page {
 }
 
 .jiesuan-box .total {
-    color: #e64340;
+    color: #77B5C7;
     text-align: right;
 }

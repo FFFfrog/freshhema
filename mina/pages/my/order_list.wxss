@@ -24,8 +24,8 @@
 }
 
 .status-box .status-label.active {
-    color: #e64340;
-    border-bottom: 6rpx solid #e64340;
+    color: #77B5C7;
+    border-bottom: 6rpx solid #77B5C7;
 }
 
 .status-box .status-label .red-dot {
@@ -84,7 +84,7 @@
 
 .order-list .a-order .order-date .red {
     font-size: 26rpx;
-    color: #e64340;
+    color: #77B5C7;
 }
 
 .a-order .goods-info,
@@ -151,7 +151,7 @@
 
 .order-list .a-order .price-box .total-price {
     font-size: 26rpx;
-    color: #e64340;
+    color: #77B5C7;
 }
 
 .a-order .price-box .btn {
@@ -165,13 +165,14 @@
 }
 
 .a-order .price-box .cancel-btn {
-    border: 1rpx solid #ccc;
+    border: 1px solid #77B5C7;
+    color: #77B5C7;
     position: absolute;
     right: 216rpx;
     top: 20rpx;
 }
 
 .a-order .price-box .topay-btn {
-    border: 1px solid #e64340;
-    color: #e64340;
+    border: 1px solid #77B5C7;
+    color: #77B5C7;
 }

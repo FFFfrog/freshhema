@@ -29,7 +29,7 @@ page {
 
 .to-index-btn {
     color: #fff;
-    background: #e64340;
+    background: #77B5C7;
     border-radius: 6px;
     width: 300rpx;
     height: 70rpx;
@@ -127,7 +127,7 @@ page {
 
 .goods-info .text-box .goods-price {
     font-size: 26rpx;
-    color: #e64340;
+    color: #77B5C7;
 }
 
 .goods-info .text-box .buy-num {
@@ -197,7 +197,7 @@ page {
     width: 120rpx;
     line-height: 220rpx;
     text-align: center;
-    background: #e64340;
+    background: #77B5C7;
     font-size: 24rpx;
     color: #fff;
 }
@@ -219,7 +219,7 @@ page {
     width: 240rpx;
     text-align: center;
     line-height: 100rpx;
-    background-color: #e64340;
+    background-color: #77B5C7;
     font-size: 32rpx;
     color: #ffffff;
 }
@@ -251,5 +251,5 @@ page {
 }
 
 .jiesuan-box .total {
-    color: #e64340;
+    color: #77B5C7;
 }

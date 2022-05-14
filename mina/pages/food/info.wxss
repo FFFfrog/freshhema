@@ -112,7 +112,7 @@ swiper-item image {
 
 .goods-info .goods-price {
     box-sizing: border-box;
-    color: #e64340;
+    color: #77B5C7;
     font-size: 28rpx;
     font-weight: bold;
     width: 30%;
@@ -170,7 +170,6 @@ swiper-item image {
     bottom: 0;
     left: 0;
     display: flex;
-    box-shadow: 0 0 8rpx 0;
 }
 
 .footer-box .contact {
@@ -207,7 +206,7 @@ swiper-item image {
 
 .footer-box .shop-cart-btn .shop-num {
     position: absolute;
-    color: #e64340;
+    color: #77B5C7;
     left: 85rpx;
     top: 10rpx;
 }
@@ -217,7 +216,7 @@ swiper-item image {
     width: 310rpx;
     height: 100%;
     line-height: 100rpx;
-    background-color: #ff6850;
+    background-color: #77B5C7;
     color: #fff;
     font-size: 34rpx;
 }
@@ -227,7 +226,7 @@ swiper-item image {
     height: 100%;
     width: 310rpx;
     line-height: 100rpx;
-    background-color: #e64340;
+    background-color: #77B5C7;
     color: #fff;
     font-size: 34rpx;
 }
@@ -292,7 +291,7 @@ swiper-item image {
 
 .pop-goods-price {
     font-size: 26rpx;
-    color: #e64340;
+    color: #77B5C7;
     margin-top: 20rpx;
 }
 
@@ -330,8 +329,8 @@ swiper-item image {
 }
 
 .size-label-box .label-item.active {
-    color: #e64340;
-    border: 1px solid #e64340;
+    color: #77B5C7;
+    border: 1px solid #77B5C7;
 }
 
 .buy-num-box {
@@ -378,7 +377,7 @@ swiper-item image {
     line-height: 89rpx;
     font-size: 34rpx;
     color: #ffffff;
-    background-color: #e64340;
+    background-color: #77B5C7;
 }
 
 .buy-num-box .num-box .hui {

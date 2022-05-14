@@ -74,7 +74,7 @@ swiper-item image {
 }
 
 .type-item-on {
-    border-bottom: 4rpx solid #e64340;
+    border-bottom: 4rpx solid #77B5C7;
 }
 
 .goods-container {
@@ -120,7 +120,6 @@ swiper-item image {
     overflow: hidden;
     font-size: 24rpx;
     padding: 24rpx 0;
-    color: #e64340;
     margin-left: 24rpx;
 }
 
@@ -172,7 +171,7 @@ swiper-item image {
     padding-left: 10rpx;
     font-size: 26rpx;
     overflow: hidden;
-    color: #e64340;
+    color: #77B5C7;
     width: 635rpx;
     height: 50rpx;
     line-height: 50rpx;
@@ -255,7 +254,7 @@ swiper-item image {
     width: 150rpx;
     height: 70rpx;
     margin-right: 0rpx;
-    background-color: blueviolet;
+    background-color: #77B5C7;
     font-size: 28rpx;
     align-items: center;
     border-top-left-radius: 0rpx;

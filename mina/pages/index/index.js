@@ -49,7 +49,7 @@ Page({
             success: function (res) {
                 if (!res.code) {
                     app.alert({
-                        'content': '登录失败，请再次点击~~'
+                        'content': '登录失败，请再次点击'
                     });
                     return;
                 }

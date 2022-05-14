@@ -734,6 +734,22 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     border-radius: 3px;
 }
 
+.login-btn {
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 20px;
+    padding: 14px;
+    background-color: #00B72E;
+    cursor: pointer;
+}
+
+.login_wrap {
+    max-width: 420px;
+    margin: 30px auto;
+}
+
 .float-e-margins .btn {
     margin-bottom: 5px;
 }
@@ -2197,6 +2213,16 @@ div.dt-button-info {
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     width: 100%;
     font-size: 14px;
+}
+
+.login-control {
+    font-size: 20px;
+    font-weight: lighter;
+    border: none;
+    background-color: #F0F0F0;
+    color: #465347 !important;
+    padding: 26px 30px;
+    border-radius: 50px;
 }
 
 .form-control:focus,
@@ -3962,7 +3988,10 @@ body {
 
 html,
 body {
+    margin: 0;
+    padding: 0;
     height: 100%;
+    width: 100%;
 }
 
 body.full-height-layout #wrapper,
@@ -4015,7 +4044,10 @@ a:focus {
 }
 
 .font-bold {
-    font-weight: 600;
+    font-weight: bold;
+    font-size: 60px;
+    letter-spacing: 3px;
+    color: #fff;
 }
 
 .font-noraml {
@@ -4497,16 +4529,6 @@ code {
     min-height: 48px;
 }
 
-.ibox-content {
-    background-color: #ffffff;
-    color: inherit;
-    padding: 15px 20px 20px 20px;
-    border-color: #e7eaec;
-    border-image: none;
-    border-style: solid solid none;
-    border-width: 1px 0;
-}
-
 .ibox-footer {
     color: inherit;
     border-top: 1px solid #e7eaec;
@@ -4549,7 +4571,22 @@ table.table-mail tr td {
 }
 
 .ibox-content {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0;
+}
+
+.login-ibox {
     clear: both;
+    background-color: rgba(0, 0, 0, 0.21);
+    color: inherit;
+    padding: 15px 30px 30px 30px;
+    height: 400px;
+    border: none;
 }
 
 .ibox-heading {
@@ -4608,6 +4645,29 @@ table.table-mail tr td {
 /* BACKGROUNDS */
 .gray-bg {
     background-color: #f3f3f4;
+}
+
+.login-bg {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.login-content {
+    /*width: fit-content;*/
+    /*margin: 0 auto;*/
+}
+
+.login-col8 {
+    /*width: fit-content;*/
+    /*margin: 0 auto;*/
+}
+
+.login-col6 {
+    width: fit-content;
+    margin: 0 auto;
+    color: #fff;
 }
 
 .white-bg {
@@ -5382,8 +5442,8 @@ body.mini-navbar.fixed-sidebar .logo-element {
 
 .loginColumns {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 100px 20px 20px 20px;
+    /*margin: 0 auto;*/
+    padding: 160px 20px 20px 20px;
 }
 
 .passwordBox {

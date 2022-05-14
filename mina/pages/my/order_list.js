@@ -23,17 +23,7 @@ Page({
         // 生命周期函数--监听页面加载
         wx.request({
             url: app.buildUrl("/order/cancelled"),
-            header: app.getRequestHeader(),
-            success: function (res) {
-                app.alert({"content": "进入了页面"});
-                // var resp = res.data;
-                // if (resp.code != 200) {
-                //     app.alert({"content": resp.msg});
-                //     return;
-                // }
-                // 刷新
-                // that.onShow()
-            }
+            header: app.getRequestHeader()
         });
     },
     onShow: function () {

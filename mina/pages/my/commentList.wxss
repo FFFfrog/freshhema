@@ -25,7 +25,7 @@
 
 .comment-list .a-order .order-date .red {
     font-size: 26rpx;
-    color: #e64340;
+    color: #77B5C7;
 }
 
 .a-order .goods-info {
