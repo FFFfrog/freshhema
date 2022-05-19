@@ -80,7 +80,7 @@ Page({
             fail: function (res) {
                 console.log('获取用户信息失败', res)
                 wx.showToast({
-                    title: '信息授权失败~',
+                    title: '信息授权失败',
                     duration: 1000,
                     icon: 'error',
                     mask: true
@@ -92,7 +92,7 @@ Page({
                     success: function (res) {
                         if (!res.code) {
                             app.alert({
-                                'content': '登录失败，请再次点击2~'
+                                'content': '登录失败，请再次点击'
                             });
                             return;
                         }

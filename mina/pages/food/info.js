@@ -26,11 +26,10 @@ Page({
         that.setData({
             id: e.id
         });
-        // wx.hideShareMenu();
     },
     onShow: function () {
         this.getInfo();
-        // this.getComments();
+        this.getComments();
     },
     goShopCar: function () {
         wx.reLaunch({

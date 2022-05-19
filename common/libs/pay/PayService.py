@@ -16,7 +16,7 @@ class PayService():
         pass
 
     def createOrder(self, member_id, items=None, params=None):
-        resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+        resp = {'code': 200, 'msg': '操作成功', 'data': {}}
         pay_price = decimal.Decimal(0.00)
         continue_cnt = 0
         food_ids = []
@@ -30,7 +30,7 @@ class PayService():
 
         if continue_cnt >= len(items):
             resp['code'] = -1
-            resp['msg'] = '商品items为空~~'
+            resp['msg'] = '商品items为空'
             return resp
 
         yun_price = params['yun_price'] if params and 'yun_price' in params else 0
@@ -68,7 +68,7 @@ class PayService():
                     continue
 
                 if int(item['number']) > int(tmp_left_stock):
-                    raise Exception("您购买的这美食太火爆了，剩余：%s,你购买%s~~" % (tmp_left_stock, item['number']))
+                    raise Exception("您购买的这美食太火爆了，剩余：%s,你购买%s" % (tmp_left_stock, item['number']))
 
                 tmp_ret = Food.query.filter_by(id=item['id']).update({
                     "stock": int(tmp_left_stock) - int(item['number'])
@@ -130,16 +130,16 @@ class PayService():
         db.session.commit()
         return True
 
-    # def orderSuccess(self,pay_order_id = 0,params = None):
     def orderSuccess(self, pay_order_id=0):
         try:
             pay_order_info = PayOrder.query.filter_by(id=pay_order_id).first()
             if not pay_order_info or pay_order_info.status not in [-8, -7]:
                 return True
-            # pay_order_info.pay_sn = params['pay_sn'] if params and 'pay_sn' in params else ''
             pay_order_info.status = 1
             pay_order_info.express_status = -7
             pay_order_info.updated_time = getCurrentDate()
+            pay_order_info.pay_time = getCurrentDate()
+            pay_order_info.express_deadline = getCurrentDate() + datetime.timedelta(minutes=10)
             db.session.add(pay_order_info)
 
             # 售卖历史
@@ -182,21 +182,6 @@ class PayService():
             return False
         return True
 
-    # def addPayCallbackData(self,pay_order_id = 0,type = 'pay',data = ''):
-    #         model_callback = PayOrderCallbackData()
-    #         model_callback.pay_order_id = pay_order_id
-    #         if type == "pay":
-    #             model_callback.pay_data = data
-    #             model_callback.refund_data = ''
-    #         else:
-    #             model_callback.refund_data = data
-    #             model_callback.pay_data = ''
-    #
-    #         model_callback.created_time = model_callback.updated_time = getCurrentDate()
-    #         db.session.add( model_callback )
-    #         db.session.commit()
-    #         return True
-    #
     def geneOrderSn(self):
         m = hashlib.md5()
         sn = None

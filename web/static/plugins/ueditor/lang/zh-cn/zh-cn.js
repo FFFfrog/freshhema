@@ -527,11 +527,11 @@ UE.I18N['zh-cn'] = {
             'lang_input_removePic': '删除背景',
             'J_imgTxt': {title: '添加背景图片'}
         },
-        'noScarwl': "尚未作画，白纸一张~",
-        'scrawlUpLoading': "涂鸦上传中,别急哦~",
+        'noScarwl': "尚未作画，白纸一张",
+        'scrawlUpLoading': "涂鸦上传中,别急哦",
         'continueBtn': "继续",
         'imageError': "糟糕，图片读取失败了！",
-        'backgroundUploading': '背景图片上传中,别急哦~'
+        'backgroundUploading': '背景图片上传中,别急哦'
     },
     'music': {
         'static': {

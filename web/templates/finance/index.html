@@ -41,7 +41,11 @@
                             </td>
                             <td>{{ item.price }}</td>
                             <td>{{ item.pay_time }}</td>
-                            <td>{{ item.status_desc }}</td>
+                            {% if item.status_desc!="待发货" %}
+                                <td>{{ item.status_desc }}</td>
+                            {% else %}
+                                <td id="countdown">请于{{ item.express_deadline }}前发货</td>
+                            {% endif %}
                             <td>{{ item.created_time }}</td>
                             <td>
                                 <a href="{{ buildUrl('/finance/pay-info') }}?id={{ item.id }}">
@@ -52,12 +56,11 @@
                     {% endfor %}
                 {% else %}
                     <tr>
-                        <td colspan="7">暂无数据~~</td>
+                        <td colspan="7">暂无数据</td>
                     </tr>
                 {% endif %}
                 </tbody>
             </table>
-            <!--分页代码已被封装到统一模板文件中-->
             {% include 'common/pagenation.html' %}
         </div>
     </div>
@@ -65,3 +68,4 @@
 {% block js %}
     <script src="{{ buildStaticUrl('/js/finance/index.js') }}"></script>
 {% endblock %}
+

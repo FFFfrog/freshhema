@@ -89,19 +89,19 @@ def set():
         resp_data['current'] = 'index'
         return ops_render("member/set.html", resp_data)
 
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     id = req['id'] if 'id' in req else 0
     nickname = req['nickname'] if 'nickname' in req else ''
     if nickname is None or len(nickname) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的姓名~~"
+        resp['msg'] = "请输入符合规范的姓名"
         return jsonify(resp)
 
     member_info = Member.query.filter_by(id=id).first()
     if not member_info:
         resp['code'] = -1
-        resp['msg'] = "指定会员不存在~~"
+        resp['msg'] = "指定会员不存在"
         return jsonify(resp)
 
     member_info.nickname = nickname
@@ -167,24 +167,24 @@ def comment():
 
 @route_member.route("/ops", methods=["POST"])
 def ops():
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     id = req['id'] if 'id' in req else 0
     act = req['act'] if 'act' in req else ''
     if not id:
         resp['code'] = -1
-        resp['msg'] = "请选择要操作的账号~~"
+        resp['msg'] = "请选择要操作的账号"
         return jsonify(resp)
 
     if act not in ['remove', 'recover']:
         resp['code'] = -1
-        resp['msg'] = "操作有误，请重试~~"
+        resp['msg'] = "操作有误，请重试"
         return jsonify(resp)
 
     member_info = Member.query.filter_by(id=id).first()
     if not member_info:
         resp['code'] = -1
-        resp['msg'] = "指定会员不存在~~"
+        resp['msg'] = "指定会员不存在"
         return jsonify(resp)
 
     if act == "remove":

@@ -24,8 +24,7 @@ def index():
     page = int(req['p']) if ('p' in req and req['p']) else 1
     date_from = req['date_from'] if 'date_from' in req else default_date_from
     date_to = req['date_to'] if 'date_to' in req else default_date_to
-    query = StatDailySite.query.filter(StatDailySite.date >= date_from) \
-        .filter(StatDailySite.date <= date_to)
+    query = StatDailySite.query.filter(StatDailySite.date >= date_from).filter(StatDailySite.date <= date_to)
 
     page_params = {
         'total': query.count(),
@@ -61,8 +60,7 @@ def food():
     page = int(req['p']) if ('p' in req and req['p']) else 1
     date_from = req['date_from'] if 'date_from' in req else default_date_from
     date_to = req['date_to'] if 'date_to' in req else default_date_to
-    query = StatDailyFood.query.filter(StatDailyFood.date >= date_from) \
-        .filter(StatDailyFood.date <= date_to)
+    query = StatDailyFood.query.filter(StatDailyFood.date >= date_from).filter(StatDailyFood.date <= date_to)
 
     page_params = {
         'total': query.count(),
@@ -111,8 +109,7 @@ def memebr():
     page = int(req['p']) if ('p' in req and req['p']) else 1
     date_from = req['date_from'] if 'date_from' in req else default_date_from
     date_to = req['date_to'] if 'date_to' in req else default_date_to
-    query = StatDailyMember.query.filter(StatDailyMember.date >= date_from) \
-        .filter(StatDailyMember.date <= date_to)
+    query = StatDailyMember.query.filter(StatDailyMember.date >= date_from).filter(StatDailyMember.date <= date_to)
 
     page_params = {
         'total': query.count(),
@@ -161,8 +158,7 @@ def share():
     page = int(req['p']) if ('p' in req and req['p']) else 1
     date_from = req['date_from'] if 'date_from' in req else default_date_from
     date_to = req['date_to'] if 'date_to' in req else default_date_to
-    query = StatDailySite.query.filter(StatDailySite.date >= date_from) \
-        .filter(StatDailySite.date <= date_to)
+    query = StatDailySite.query.filter(StatDailySite.date >= date_from).filter(StatDailySite.date <= date_to)
 
     page_params = {
         'total': query.count(),

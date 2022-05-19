@@ -19,7 +19,7 @@ def dashboard():
     list = StatDailySite.query.filter(StatDailySite.date >= date_from).filter(StatDailySite.date <= date_to).order_by(
         StatDailySite.id.asc()).all()
 
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     data = {
         "categories": [],
         "series": [
@@ -54,7 +54,7 @@ def finance():
     list = StatDailySite.query.filter(StatDailySite.date >= date_from).filter(StatDailySite.date <= date_to).order_by(
         StatDailySite.id.asc()).all()
 
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     data = {
         "categories": [],
         "series": [
@@ -81,11 +81,10 @@ def share():
     date_from = getFormatDate(date=date_before_30days, format="%Y-%m-%d")
     date_to = getFormatDate(date=now, format="%Y-%m-%d")
 
-    list = StatDailySite.query.filter(StatDailySite.date >= date_from) \
-        .filter(StatDailySite.date <= date_to).order_by(StatDailySite.id.asc()) \
-        .all()
+    list = StatDailySite.query.filter(StatDailySite.date >= date_from).filter(StatDailySite.date <= date_to).order_by(
+        StatDailySite.id.asc()).all()
 
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     data = {
         "categories": [],
         "series": [

@@ -13,7 +13,7 @@ from common.libs.member.MemberService import MemberService
 
 @route_api.route("/member/login", methods=["GET", "POST"])
 def login():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     code = req['code'] if 'code' in req else ''
     if not code or len(code) < 1:
@@ -63,7 +63,7 @@ def login():
 
 @route_api.route("/member/check-reg", methods=["GET", "POST"])
 def checkReg():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     code = req['code'] if 'code' in req else ''
     if not code or len(code) < 1:
@@ -96,7 +96,7 @@ def checkReg():
 
 @route_api.route("/member/share", methods=["POST"])
 def memberShare():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     url = req['url'] if 'url' in req else ''
     member_info = g.member_info
@@ -112,7 +112,7 @@ def memberShare():
 
 @route_api.route("/member/info")
 def memberInfo():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     member_info = g.member_info
     resp['data']['info'] = {
         "nickname": member_info.nickname,

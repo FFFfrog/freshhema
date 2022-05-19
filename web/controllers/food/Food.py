@@ -90,7 +90,7 @@ def set():
         resp_data['current'] = 'index'
         return ops_render("food/set.html", resp_data)
 
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     id = int(req['id']) if 'id' in req and req['id'] else 0
     cat_id = int(req['cat_id']) if 'cat_id' in req else 0
@@ -103,43 +103,43 @@ def set():
 
     if cat_id < 1:
         resp['code'] = -1
-        resp['msg'] = "请选择分类~~"
+        resp['msg'] = "请选择分类"
         return jsonify(resp)
 
     if name is None or len(name) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的名称~~"
+        resp['msg'] = "请输入符合规范的名称"
         return jsonify(resp)
 
     if not price or len(price) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的售卖价格~~"
+        resp['msg'] = "请输入符合规范的售卖价格"
         return jsonify(resp)
 
     price = Decimal(price).quantize(Decimal('0.00'))
     if price <= 0:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的售卖价格~~"
+        resp['msg'] = "请输入符合规范的售卖价格"
         return jsonify(resp)
 
     if main_image is None or len(main_image) < 3:
         resp['code'] = -1
-        resp['msg'] = "请上传封面图~~"
+        resp['msg'] = "请上传封面图"
         return jsonify(resp)
 
     if summary is None or len(summary) < 3:
         resp['code'] = -1
-        resp['msg'] = "请输入图书描述，并不能少于10个字符~~"
+        resp['msg'] = "请输入图书描述，并不能少于10个字符"
         return jsonify(resp)
 
     if stock < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的库存量~~"
+        resp['msg'] = "请输入符合规范的库存量"
         return jsonify(resp)
 
     if tags is None or len(tags) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入标签，便于搜索~~"
+        resp['msg'] = "请输入标签，便于搜索"
         return jsonify(resp)
 
     food_info = Food.query.filter_by(id=id).first()
@@ -198,7 +198,7 @@ def catSet():
         resp_data['current'] = 'cat'
         return ops_render("food/cat_set.html", resp_data)
 
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
 
     id = req['id'] if 'id' in req else 0
@@ -207,7 +207,7 @@ def catSet():
 
     if name is None or len(name) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的分类名  称~~"
+        resp['msg'] = "请输入符合规范的分类名称"
         return jsonify(resp)
 
     food_cat_info = FoodCat.query.filter_by(id=id).first()
@@ -226,25 +226,25 @@ def catSet():
 
 @route_food.route("/cat-ops", methods=["POST"])
 def catOps():
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
 
     id = req['id'] if 'id' in req else 0
     act = req['act'] if 'act' in req else ''
     if not id:
         resp['code'] = -1
-        resp['msg'] = "请选择要操作的账号~~"
+        resp['msg'] = "请选择要操作的账号"
         return jsonify(resp)
 
     if act not in ['remove', 'recover']:
         resp['code'] = -1
-        resp['msg'] = "操作有误，请重试~~"
+        resp['msg'] = "操作有误，请重试"
         return jsonify(resp)
 
     food_cat_info = FoodCat.query.filter_by(id=id).first()
     if not food_cat_info:
         resp['code'] = -1
-        resp['msg'] = "指定分类不存在~~"
+        resp['msg'] = "指定分类不存在"
         return jsonify(resp)
 
     if act == "remove":
@@ -260,7 +260,7 @@ def catOps():
 
 @route_food.route("/ops", methods=["POST"])
 def ops():
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
 
     id = req['id'] if 'id' in req else 0
@@ -268,18 +268,18 @@ def ops():
 
     if not id:
         resp['code'] = -1
-        resp['msg'] = "请选择要操作的账号~~"
+        resp['msg'] = "请选择要操作的账号"
         return jsonify(resp)
 
     if act not in ['remove', 'recover']:
         resp['code'] = -1
-        resp['msg'] = "操作有误，请重试~~"
+        resp['msg'] = "操作有误，请重试"
         return jsonify(resp)
 
     food_info = Food.query.filter_by(id=id).first()
     if not food_info:
         resp['code'] = -1
-        resp['msg'] = "指定美食不存在~~"
+        resp['msg'] = "指定美食不存在"
         return jsonify(resp)
 
     if act == "remove":

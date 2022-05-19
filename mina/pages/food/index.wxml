@@ -1,5 +1,4 @@
 <!--index.wxml-->
-        <!--1px = 750/320 = 2.34rpx;-->
 <view class="container">
     <!--轮播图-->
     <view class="swiper-container">

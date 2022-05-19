@@ -9,11 +9,6 @@ from common.models.Image import Image
 
 route_upload = Blueprint('upload_page', __name__)
 
-'''
-参考文章：https://segmentfault.com/a/1190000002429055
-'''
-
-
 @route_upload.route("/ueditor", methods=["GET", "POST"])
 def ueditor():
     req = request.values

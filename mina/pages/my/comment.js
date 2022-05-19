@@ -2,7 +2,7 @@
 var app = getApp();
 Page({
     data: {
-        "content": "非常愉快的订餐体验~~",
+        "content": "非常愉快的订餐体验",
         "score": 10,
         "order_sn": ""
     },

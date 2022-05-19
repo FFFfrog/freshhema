@@ -14,7 +14,7 @@ import json, datetime
 
 @route_api.route("/my/order")
 def myOrderList():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     member_info = g.member_info
     req = request.values
     status = int(req['status']) if 'status' in req else 0
@@ -74,14 +74,14 @@ def myOrderList():
 
 @route_api.route("/my/order/info")
 def myOrderInfo():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     member_info = g.member_info
     req = request.values
     order_sn = req['order_sn'] if 'order_sn' in req else ''
     pay_order_info = PayOrder.query.filter_by(member_id=member_info.id, order_sn=order_sn).first()
     if not pay_order_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙，请稍后再试~~"
+        resp['msg'] = "系统繁忙，请稍后再试"
         return jsonify(resp)
 
     express_info = {}
@@ -122,7 +122,7 @@ def myOrderInfo():
 
 @route_api.route("/my/comment/add", methods=["POST"])
 def myCommentAdd():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     member_info = g.member_info
     req = request.values
     order_sn = req['order_sn'] if 'order_sn' in req else ''
@@ -132,12 +132,12 @@ def myCommentAdd():
     pay_order_info = PayOrder.query.filter_by(member_id=member_info.id, order_sn=order_sn).first()
     if not pay_order_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙，请稍后再试~~"
+        resp['msg'] = "系统繁忙，请稍后再试"
         return jsonify(resp)
 
     if pay_order_info.comment_status:
         resp['code'] = -1
-        resp['msg'] = "已经评价过了~~"
+        resp['msg'] = "已经评价过了"
         return jsonify(resp)
 
     pay_order_items = PayOrderItem.query.filter_by(pay_order_id=pay_order_info.id).all()
@@ -161,7 +161,7 @@ def myCommentAdd():
 
 @route_api.route("/my/comment/list")
 def myCommentList():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     member_info = g.member_info
     comment_list = MemberComments.query.filter_by(member_id=member_info.id).order_by(MemberComments.id.desc()).all()
     data_comment_list = []

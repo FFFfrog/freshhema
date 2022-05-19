@@ -1,19 +1,6 @@
 {% extends "common/layout_main.html" %}
 {% block content %}
-    <div class="row  border-bottom">
-        <div class="col-lg-12">
-            <div class="tab_title">
-                <ul class="nav nav-pills">
-                    <li class="current">
-                        <a href="{{ buildUrl('/member/index') }}">会员列表</a>
-                    </li>
-                    <li>
-                        <a href="{{ buildUrl('/member/comment') }}">会员评论</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    {% include "common/tab_member.html" %}
     <div class="row m-t">
         <div class="col-lg-12">
             <div class="row">
@@ -67,9 +54,18 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        {% if pay_order_list %}
+                                            {% for item in pay_order_list %}
+                                                <tr>
+                                                    <td>{{ item.order_number }}</td>
+                                                    <td>{{ item.pay_time }}</td>
+                                                    <td>{{ item.total_price }}</td>
+                                                    <td>{{ item.status_desc }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% else %}
                                             <td colspan="4">暂无订单</td>
-                                        </tr>
+                                        {% endif %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -85,10 +81,17 @@
                                         <tbody>
                                         <tr>
                                         </tr>
-                                        <tr>
+                                        {% if comment_list %}
+                                            {% for item in comment_list %}
+                                                <tr>
+                                                    <td>{{ item.created_time }}</td>
+                                                    <td>{{ item.score }}</td>
+                                                    <td>{{ item.content }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        {% else %}
                                             <td colspan="3">暂无评论</td>
-                                        </tr>
-
+                                        {% endif %}
                                         </tbody>
                                     </table>
                                 </div>

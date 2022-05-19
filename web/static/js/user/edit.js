@@ -7,7 +7,7 @@ var user_edit_ops = {
         $(".user_edit_wrap .save").click(function () {
             var btn_target = $(this);
             if (btn_target.hasClass("disabled")) {
-                common_ops.alert("正在处理!!请不要重复提交~~");
+                common_ops.alert("正在处理!!请不要重复提交");
                 return;
             }
 
@@ -18,12 +18,12 @@ var user_edit_ops = {
             var email = email_target.val();
 
             if (!nickname || nickname.length < 2) {
-                common_ops.tip("请输入符合规范的姓名~~", nickname_target);
+                common_ops.tip("请输入符合规范的姓名", nickname_target);
                 return false;
             }
 
             if (!email || email.length < 2) {
-                common_ops.tip("请输入符合规范的邮箱~~", nickname_target);
+                common_ops.tip("请输入符合规范的邮箱", nickname_target);
                 return false;
             }
 

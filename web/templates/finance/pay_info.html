@@ -14,16 +14,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="m-t">订单编号：{{ pay_order_info.order_number }}</p>
-                    <p>会员姓名：{{ member_info.nickname }}</p>
-                    <p>订单总价：{{ pay_order_info.total_price }}</p>
-                    <p>订单状态：{{ pay_order_info.status_desc }}</p>
-                    <p>创建时间：{{ pay_order_info.created_time }}</p>
-                    <p>收货地址：{{ address_info.nickname }}，{{ address_info.mobile }}，{{ address_info.address }}</p>
-                </div>
-            </div>
             <div class="row m-t">
                 <div class="col-lg-12">
                     <div class="panel blank-panel">
@@ -64,6 +54,7 @@
                     </div>
                 </div>
             </div>
+            {% include "finance/flow_chart.html" %}
         </div>
     </div>
 {% endblock %}

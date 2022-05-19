@@ -18,7 +18,7 @@ import datetime
 
 @route_api.route("/order/info", methods=["POST"])
 def orderInfo():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     params_goods = req['goods'] if 'goods' in req else None
     member_info = g.member_info
@@ -68,7 +68,7 @@ def orderInfo():
 
 @route_api.route("/order/create", methods=["POST"])
 def orderCreate():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     type = req['type'] if 'type' in req else ''
     note = req['note'] if 'note' in req else ''
@@ -82,13 +82,13 @@ def orderCreate():
 
     if len(items) < 1:
         resp['code'] = -1
-        resp['msg'] = "下单失败：没有选择商品~~"
+        resp['msg'] = "下单失败：没有选择商品"
         return jsonify(resp)
 
     address_info = MemberAddress.query.filter_by(id=express_address_id).first()
     if not address_info or not address_info.status:
         resp['code'] = -1
-        resp['msg'] = "下单失败：快递地址不对~~"
+        resp['msg'] = "下单失败：快递地址不对"
         return jsonify(resp)
 
     member_info = g.member_info
@@ -114,7 +114,7 @@ def orderCreate():
 
 @route_api.route("/order/pay", methods=["POST"])
 def orderPay():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     member_info = g.member_info
     req = request.values
     prevpage = ''
@@ -122,45 +122,43 @@ def orderPay():
         prevpage = req['prevpage']  # pages/my/index
         order_sn = req['order_sn']
         pay_order_info = PayOrder.query.filter_by(order_sn=order_sn).first()
-        # pay_order_info = PayOrder.query.filter_by( order_sn = order_sn,member_id = member_info.id ).first()
         if not pay_order_info:
             resp['code'] = -1
-            resp['msg'] = "系统繁忙。请稍后再试1~~"
+            resp['msg'] = "系统繁忙。请稍后再试"
             return jsonify(resp)
 
         oauth_bind_info = OauthMemberBind.query.filter_by(member_id=member_info.id).first()
         if not oauth_bind_info:
             resp['code'] = -1
-            resp['msg'] = "系统繁忙。请稍后再试2~~"
+            resp['msg'] = "系统繁忙。请稍后再试"
             return jsonify(resp)
 
         target_pay = PayService()
         target_pay.orderSuccess(pay_order_id=pay_order_info.id)
         return jsonify(resp)
     else:
-        prevpage = json.loads(list(req.to_dict().keys())[0])['prevpage']  # pages/food/index
-        food_id = json.loads(list(req.to_dict().keys())[0])['goods'][0]['id']  # int型
-        number = json.loads(list(req.to_dict().keys())[0])['goods'][0]['number']  # int型
+        food_id = json.loads(list(req.to_dict().keys())[0])['goods'][0]['id']
+        number = json.loads(list(req.to_dict().keys())[0])['goods'][0]['number']
         if food_id < 1 or number < 1:
             resp['code'] = -1
-            resp['msg'] = "购买失败-1~~"
+            resp['msg'] = "购买失败"
             return jsonify(resp)
         food_info = Food.query.filter_by(id=food_id).first()
         if not food_info:
             resp['code'] = -1
-            resp['msg'] = "购买失败-3~~"
+            resp['msg'] = "购买失败"
             return jsonify(resp)
 
         if food_info.stock < number:
             resp['code'] = -1
-            resp['msg'] = "购买失败,库存不足~~"
+            resp['msg'] = "购买失败,库存不足"
             return jsonify(resp)
         return jsonify(resp)
 
 
 @route_api.route("/order/ops", methods=["POST"])
 def orderOps():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     member_info = g.member_info
     order_sn = req['order_sn'] if 'order_sn' in req else ''
@@ -168,7 +166,7 @@ def orderOps():
     pay_order_info = PayOrder.query.filter_by(order_sn=order_sn, member_id=member_info.id).first()
     if not pay_order_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙。请稍后再试~~"
+        resp['msg'] = "系统繁忙。请稍后再试"
         return jsonify(resp)
 
     if act == "cancel":
@@ -176,11 +174,12 @@ def orderOps():
         ret = target_pay.closeOrder(pay_order_id=pay_order_info.id)
         if not ret:
             resp['code'] = -1
-            resp['msg'] = "系统繁忙。请稍后再试~~"
+            resp['msg'] = "系统繁忙。请稍后再试"
             return jsonify(resp)
     elif act == "confirm":
         pay_order_info.express_status = 1
         pay_order_info.updated_time = getCurrentDate()
+        pay_order_info.confirm_time = getCurrentDate()
         db.session.add(pay_order_info)
         db.session.commit()
 
@@ -189,30 +188,15 @@ def orderOps():
 
 @route_api.route("/order/cancelled")
 def orderCancelled():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     member_info = g.member_info
     # 待付款的订单
     query = PayOrder.query.filter_by(member_id=member_info.id, status=-8).all()
-    # data_pay_order_list = []
     if query:
-        print('12')
-        # pay_order.id    [54, 55, 56]
         pay_order_ids = selectFilterObj(query, "id")
-        # print(str(pay_order_ids))
-        # print('23')
-        # pay_order_item.pay_order_id里有pay_order.id的      [<PayOrderItem 57>, <PayOrderItem 58>, <PayOrderItem 59>]
         pay_order_item_list = PayOrderItem.query.filter(PayOrderItem.pay_order_id.in_(pay_order_ids)).all()
-        # print(str(pay_order_item_list))
-        # print('34')
-        # pay_order_item.pay_order_id对应的food_id    [13, 1, 6]
-        food_ids = selectFilterObj(pay_order_item_list, "food_id")
-        # print(str(food_ids))
-        # print('45')
-        # 过期时间   [datetime.datetime(2022, 5, 6, 11, 30, 19), datetime.datetime(2022, 5, 6, 22, 30, 38), datetime.datetime(2022, 5, 6, 22, 31, 1)]
         deadline = selectFilterObj(pay_order_item_list, "deadline")
-        # print(str(deadline))
-        # print('56')
         for i in range(len(deadline)):
             time = getCurrentDate()
             result = deadline[i].__le__(time)
@@ -220,20 +204,14 @@ def orderCancelled():
             if result == True:
                 ls = []
                 ls.append(deadline[i])
-                # pay_order_item.pay_order_id里有pay_order.id的
                 list1 = PayOrderItem.query.filter(PayOrderItem.pay_order_id.in_(pay_order_ids),
                                                   PayOrderItem.deadline.in_(ls)).all()
-                # print(list1)
-                # print('1234')
-                # pay_order_item里对应的pay_order_id
                 list2 = selectFilterObj(list1, "pay_order_id")
-                # print(list2)
-                # print('12345')
                 target_pay = PayService()
                 for j in list2:
                     ret = target_pay.closeOrder(pay_order_id=j)
                     if not ret:
                         resp['code'] = -1
-                        resp['msg'] = "系统繁忙。请稍后再试~~"
+                        resp['msg'] = "系统繁忙。请稍后再试"
                         return jsonify(resp)
     return jsonify(resp)

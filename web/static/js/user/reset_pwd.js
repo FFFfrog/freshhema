@@ -7,7 +7,7 @@ var mod_pwd_ops = {
         $("#save").click(function () {
             var btn_target = $(this);
             if (btn_target.hasClass("disabled")) {
-                common_ops.alert("正在处理!!请不要重复提交~~");
+                common_ops.alert("正在处理!!请不要重复提交");
                 return;
             }
 
@@ -16,12 +16,12 @@ var mod_pwd_ops = {
 
 
             if (!old_password) {
-                common_ops.alert("请输入原密码~~");
+                common_ops.alert("请输入原密码");
                 return false;
             }
 
             if (!new_password || new_password.length < 6) {
-                common_ops.alert("请输入不少于6位的新密码~~");
+                common_ops.alert("请输入不少于6位的新密码");
                 return false;
             }
 

@@ -25,3 +25,7 @@ class MemberAddress(db.Model):
     is_default = db.Column(db.Integer, nullable=False, server_default=db.FetchedValue())
     updated_time = db.Column(db.DateTime, nullable=False, server_default=db.FetchedValue())
     created_time = db.Column(db.DateTime, nullable=False, server_default=db.FetchedValue())
+    gdlon = db.Column(db.Numeric(10, 2), nullable=False, server_default=db.FetchedValue())
+    gdlat = db.Column(db.Numeric(10, 2), nullable=False, server_default=db.FetchedValue())
+    detail = db.Column(db.String(100), nullable=False, server_default=db.FetchedValue())
+    detail_gd = db.Column(db.String(100), nullable=False, server_default=db.FetchedValue())

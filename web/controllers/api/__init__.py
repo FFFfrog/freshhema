@@ -13,4 +13,4 @@ from web.controllers.api.Address import *
 
 @route_api.route("/")
 def index():
-    return "Mina Api V1.0~"
+    return "Mina Api V1.0"

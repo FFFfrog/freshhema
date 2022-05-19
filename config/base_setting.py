@@ -41,8 +41,8 @@ UPLOAD = {
 
 APP = {
     # 'domain':'http://10.62.19.64:8999'
-    'domain': 'http://10.62.73.160:8999'
-    # 'domain':'http://192.168.43.15:8999'
+    # 'domain': 'http://10.62.73.160:8999'
+    'domain': 'http://192.168.43.15:8999'
 }
 
 PAY_STATUS_MAPPING = {

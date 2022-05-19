@@ -3,20 +3,19 @@ Page({
     data: {
         list: [
             {
-                date: "2018-07-01 22:30:23",
-                order_number: "20180701223023001",
+                date: "2022-05-01 22:30:23",
+                order_number: "20220501223023001",
                 content: "记得周六发货",
             },
             {
-                date: "2018-07-01 22:30:23",
-                order_number: "20180701223023001",
+                date: "2022-05-01 22:30:23",
+                order_number: "20220501223023001",
                 content: "记得周六发货",
             }
         ]
     },
     onLoad: function (options) {
         // 生命周期函数--监听页面加载
-
     },
     onShow: function () {
         this.getCommentList();

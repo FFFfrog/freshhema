@@ -6,11 +6,13 @@ from application import app, db
 from common.libs.UrlManager import UrlManager
 from common.libs.user.Helper import getCurrentDate
 from common.models.member.MemberAddress import MemberAddress
+from common.libs.Addresstranslation import ExcuteSingleQuery
+import json
 
 
 @route_api.route("/my/address/index")
 def myAddressList():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     member_info = g.member_info
     list = MemberAddress.query.filter_by(status=1, member_id=member_info.id).order_by(MemberAddress.id.desc()).all()
     data_list = []
@@ -30,7 +32,7 @@ def myAddressList():
 
 @route_api.route("/my/address/set", methods=["POST"])
 def myAddressSet():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     id = int(req['id']) if 'id' in req and req['id'] else 0
     nickname = req['nickname'] if 'nickname' in req else ''
@@ -48,22 +50,22 @@ def myAddressSet():
 
     if not nickname:
         resp['code'] = -1
-        resp['msg'] = "请填写联系人姓名~~"
+        resp['msg'] = "请填写联系人姓名"
         return jsonify(resp)
 
     if not mobile:
         resp['code'] = -1
-        resp['msg'] = "请填写手机号码~~"
+        resp['msg'] = "请填写手机号码"
         return jsonify(resp)
 
     if province_id < 1:
         resp['code'] = -1
-        resp['msg'] = "请选择地区~~"
+        resp['msg'] = "请选择地区"
         return jsonify(resp)
 
     if city_id < 1:
         resp['code'] = -1
-        resp['msg'] = "请选择地区~~"
+        resp['msg'] = "请选择地区"
         return jsonify(resp)
 
     if district_id < 1:
@@ -71,12 +73,12 @@ def myAddressSet():
 
     if not address:
         resp['code'] = -1
-        resp['msg'] = "请填写详细地址~~"
+        resp['msg'] = "请填写详细地址"
         return jsonify(resp)
 
     if not member_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙，请稍后再试~~"
+        resp['msg'] = "系统繁忙，请稍后再试"
         return jsonify(resp)
 
     address_info = MemberAddress.query.filter_by(id=id, member_id=member_info.id).first()
@@ -98,6 +100,16 @@ def myAddressSet():
     model_address.city_str = city_str
     model_address.area_id = district_id
     model_address.area_str = district_str
+    model_address.detail = province_str + city_str + district_str + address
+
+    model_address.detail1 = model_address.detail + ','
+    addresslist = model_address.detail1.split(",")
+
+    model_address.gdlon = ExcuteSingleQuery(locationList=addresslist, currentkey="e5ecdb5d820176b3faab1e5d985ea949")[0][
+        0]
+    model_address.gdlat = ExcuteSingleQuery(locationList=addresslist, currentkey="e5ecdb5d820176b3faab1e5d985ea949")[0][
+        1]
+    model_address.detail_gd = str(model_address.gdlon) + ',' + str(model_address.gdlat)
     model_address.updated_time = getCurrentDate()
     db.session.add(model_address)
     db.session.commit()
@@ -106,20 +118,20 @@ def myAddressSet():
 
 @route_api.route("/my/address/info")
 def myAddressInfo():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     id = int(req['id']) if 'id' in req else 0
     member_info = g.member_info
 
     if id < 1 or not member_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙，请稍后再试~~"
+        resp['msg'] = "系统繁忙，请稍后再试"
         return jsonify(resp)
 
     address_info = MemberAddress.query.filter_by(id=id).first()
     if not address_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙，请稍后再试~~"
+        resp['msg'] = "系统繁忙，请稍后再试"
         return jsonify(resp)
 
     resp['data']['info'] = {
@@ -138,7 +150,7 @@ def myAddressInfo():
 
 @route_api.route("/my/address/ops", methods=["POST"])
 def myAddressOps():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     id = int(req['id']) if 'id' in req else 0
     act = req['act'] if 'act' in req else ''
@@ -146,13 +158,13 @@ def myAddressOps():
 
     if id < 1 or not member_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙，请稍后再试~~"
+        resp['msg'] = "系统繁忙，请稍后再试"
         return jsonify(resp)
 
     address_info = MemberAddress.query.filter_by(id=id, member_id=member_info.id).first()
     if not address_info:
         resp['code'] = -1
-        resp['msg'] = "系统繁忙，请稍后再试~~"
+        resp['msg'] = "系统繁忙，请稍后再试"
         return jsonify(resp)
 
     if act == "del":

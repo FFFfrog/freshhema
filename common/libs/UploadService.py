@@ -12,7 +12,7 @@ class UploadService():
     @staticmethod
     def uploadByFile(file):
         config_upload = app.config['UPLOAD']
-        resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+        resp = {'code': 200, 'msg': '操作成功', 'data': {}}
         filename = secure_filename(file.filename)
         # 获取文件后缀
         ext = filename.rsplit('.', 1)[1]

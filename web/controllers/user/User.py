@@ -46,7 +46,7 @@ def login():
 def edit():
     if request.method == "GET":
         return ops_render("user/edit.html", {'current': 'edit'})
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     nickname = req['nickname'] if 'nickname' in req else ''
     email = req['email'] if 'email' in req else ''
@@ -70,7 +70,7 @@ def edit():
 def resetPwd():
     if request.method == "GET":
         return ops_render("user/reset_pwd.html", {'current': 'reset-pwd'})
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     old_password = req['old_password'] if 'old_password' in req else ''
     new_password = req['new_password'] if 'new_password' in req else ''

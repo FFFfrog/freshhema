@@ -96,25 +96,25 @@ Page({
 
         if (nickname == "") {
             app.tip({
-                content: '请填写联系人姓名~~'
+                content: '请填写联系人姓名'
             });
             return
         }
         if (mobile == "") {
             app.tip({
-                content: '请填写手机号码~~'
+                content: '请填写手机号码'
             });
             return
         }
         if (this.data.selProvince == "请选择") {
             app.tip({
-                content: '请选择地区~~'
+                content: '请选择地区'
             });
             return
         }
         if (this.data.selCity == "请选择") {
             app.tip({
-                content: '请选择地区~~'
+                content: '请选择地区'
             });
             return
         }
@@ -127,7 +127,7 @@ Page({
         }
         if (address == "") {
             app.tip({
-                content: '请填写详细地址~~'
+                content: '请填写详细地址'
             });
             return
         }

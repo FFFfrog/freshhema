@@ -7,7 +7,7 @@ Page({
         autoplay: true,
         interval: 3000,
         duration: 1000,
-        loadingHidden: false, // loading
+        loadingHidden: false,
         swiperCurrent: 0,
         categories: [],
         activeCategoryId: 0,

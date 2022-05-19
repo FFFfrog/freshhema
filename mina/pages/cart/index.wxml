@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
     <view class="title-box" wx:if="{{!list.length}}">
-        购物车空空如也～
+        购物车空空如也
     </view>
     <view class="to-index-btn" bindtap="toIndexPage" wx:if="{{!list.length}}">
         去逛逛

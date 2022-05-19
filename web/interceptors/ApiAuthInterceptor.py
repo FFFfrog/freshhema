@@ -29,7 +29,7 @@ def before_request_api():
         return
 
     if not member_info:
-        resp = {'code': -1, 'msg': '未登录~', 'data': {}}
+        resp = {'code': -1, 'msg': '未登录', 'data': {}}
         return jsonify(resp)
     return
 

@@ -5,7 +5,7 @@ from flask import request, g, redirect
 from common.models.User import (User)
 from common.libs.user.UserService import (UserService)
 from common.libs.UrlManager import (UrlManager)
-# from common.libs.LogService import LogService
+from common.libs.LogService import LogService
 import re
 
 
@@ -29,7 +29,7 @@ def before_request():
         g.current_user = user_info
 
     # 加入日志
-    # LogService.addAccessLog()
+    LogService.addAccessLog()
     pattern = re.compile('%s' % "|".join(ignore_urls))
     if pattern.match(path):
         return

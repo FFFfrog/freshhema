@@ -2,6 +2,7 @@
 from flask import Blueprint, request, redirect, jsonify
 from common.libs.user.Helper import ops_render
 from common.models.member.Member import Member
+from common.models.member.MemberComments import MemberComments
 from common.models.food.Food import Food
 from common.models.pay.PayOrder import PayOrder
 from common.models.pay.PayOrderItem import PayOrderItem
@@ -51,7 +52,6 @@ def index():
                 tmp_food_ids = {}.fromkeys(tmp_food_ids).keys()
                 food_ids = food_ids + list(tmp_food_ids)
 
-            # food_ids里面会有重复的，要去重
             food_mapping = getDictFilterField(Food, Food.id, "id", food_ids)
 
         for item in pay_list:
@@ -61,7 +61,8 @@ def index():
                 "order_number": item.order_number,
                 "price": item.total_price,
                 "pay_time": item.pay_time,
-                "created_time": item.created_time.strftime("%Y%m%d%H%M%S")
+                "created_time": item.created_time.strftime("%Y%m%d%H%M%S"),
+                "express_deadline": item.express_deadline,
             }
             tmp_foods = []
             tmp_order_items = pay_order_items_map[item.id]
@@ -119,10 +120,12 @@ def info():
     address_info = {}
     if pay_order_info.express_info:
         address_info = json.loads(pay_order_info.express_info)
-
+    comment_info = MemberComments.query.filter(MemberComments.pay_order_id == pay_order_info.id,
+                                               MemberComments.member_id == pay_order_info.member_id).first()
     resp_data['pay_order_info'] = pay_order_info
     resp_data['pay_order_items'] = data_order_item_list
     resp_data['member_info'] = member_info
+    resp_data['comment_info'] = comment_info
     resp_data['address_info'] = address_info
     resp_data['current'] = 'index'
     return ops_render("finance/pay_info.html", resp_data)
@@ -173,6 +176,7 @@ def orderOps():
     if act == "express":
         pay_order_info.express_status = -6
         pay_order_info.updated_time = getCurrentDate()
+        pay_order_info.express_time = getCurrentDate()
         db.session.add(pay_order_info)
         db.session.commit()
 

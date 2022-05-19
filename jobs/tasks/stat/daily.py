@@ -47,7 +47,7 @@ class JobTask():
             self.statSite(func_params)
         elif act == "test":
             self.test()
-        app.logger.info("it's over~~")
+        app.logger.info("it's over")
         return
 
     '''

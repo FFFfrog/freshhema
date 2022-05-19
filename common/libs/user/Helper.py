@@ -7,11 +7,8 @@ import datetime
 '''
 自定义分页类
 '''
-
-
 def iPagination(params):
     import math
-
     ret = {
         "is_prev": 1,
         "is_next": 1,
@@ -23,7 +20,6 @@ def iPagination(params):
         "total": 0,
         "url": params['url']
     }
-
     total = int(params['total'])
     page_size = int(params['page_size'])
     page = int(params['page'])
@@ -59,8 +55,6 @@ def iPagination(params):
 '''
 统一渲染方法
 '''
-
-
 def ops_render(template, context={}):
     if 'current_user' in g:
         context['current_user'] = g.current_user
@@ -70,18 +64,13 @@ def ops_render(template, context={}):
 '''
 获取当前时间
 '''
-
-
 def getCurrentDate(format="%Y-%m-%d %H:%M:%S"):
-    # return datetime.datetime.now().strftime( format )
     return datetime.datetime.now()
 
 
 '''
 获取格式化的时间
 '''
-
-
 def getFormatDate(date=None, format="%Y-%m-%d %H:%M:%S"):
     if date is None:
         date = datetime.datetime.now()

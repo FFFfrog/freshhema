@@ -205,11 +205,6 @@ Page({
             method: 'POST',
             data: data,
             success: function (res) {
-                // var resp = res.data;
-                // app.alert({'content':resp.msg});
-                // that.setData({
-                //    hideShopPopup:true
-                // });
             }
         });
     }

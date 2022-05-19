@@ -5,7 +5,7 @@ from flask import request, jsonify, g
 from common.models.food.FoodCat import FoodCat
 from common.models.food.Food import Food
 from common.models.member.MemberCart import MemberCart
-# from common.models.member.MemberComments import MemberComments
+from common.models.member.MemberComments import MemberComments
 from common.models.member.Member import Member
 from common.libs.UrlManager import UrlManager
 from common.libs.user.Helper import getCurrentDate, getDictFilterField, selectFilterObj
@@ -15,7 +15,7 @@ from sqlalchemy import or_
 
 @route_api.route("/food/index")
 def foodIndex():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     cat_list = FoodCat.query.filter_by(status=1).order_by(FoodCat.weight.desc()).all()
     data_cat_list = []
     data_cat_list.append({
@@ -48,7 +48,7 @@ def foodIndex():
 
 @route_api.route("/food/search")
 def foodSearch():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     cat_id = int(req['cat_id']) if 'cat_id' in req else 0
     mix_kw = str(req['mix_kw']) if 'mix_kw' in req else ''
@@ -87,7 +87,7 @@ def foodSearch():
 
 @route_api.route("/food/info")
 def foodInfo():
-    resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     id = int(req['id']) if 'id' in req else 0
     food_info = Food.query.filter_by(id=id).first()
@@ -114,30 +114,31 @@ def foodInfo():
     resp['data']['cart_number'] = cart_number
     return jsonify(resp)
 
-# @route_api.route("/food/comments")
-# def foodComments():
-#     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
-#     req = request.values
-#     id = int(req['id']) if 'id' in req else 0
-#     query = MemberComments.query.filter( MemberComments.food_ids.ilike("%_{0}_%".format(id)) )
-#     list = query.order_by( MemberComments.id.desc() ).limit(5).all()
-#     data_list = []
-#     if list:
-#         member_map = getDictFilterField( Member,Member.id,"id",selectFilterObj( list,"member_id" ) )
-#         for item in list:
-#             if item.member_id not in member_map:
-#                 continue
-#             tmp_member_info = member_map[ item.member_id ]
-#             tmp_data = {
-#                 'score':item.score_desc,
-#                 'date': item.created_time.strftime("%Y-%m-%d %H:%M:%S"),
-#                 "content":item.content,
-#                 "user":{
-#                     'nickname':tmp_member_info.nickname,
-#                     'avatar_url':tmp_member_info.avatar,
-#                 }
-#             }
-#             data_list.append( tmp_data )
-#     resp['data']['list'] = data_list
-#     resp['data']['count'] = query.count()
-#     return jsonify(resp)
+
+@route_api.route("/food/comments")
+def foodComments():
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    req = request.values
+    id = int(req['id']) if 'id' in req else 0
+    query = MemberComments.query.filter(MemberComments.food_ids.ilike("%_{0}_%".format(id)))
+    list = query.order_by(MemberComments.id.desc()).limit(5).all()
+    data_list = []
+    if list:
+        member_map = getDictFilterField(Member, Member.id, "id", selectFilterObj(list, "member_id"))
+        for item in list:
+            if item.member_id not in member_map:
+                continue
+            tmp_member_info = member_map[item.member_id]
+            tmp_data = {
+                'score': item.score_desc,
+                'date': item.created_time.strftime("%Y-%m-%d %H:%M:%S"),
+                "content": item.content,
+                "user": {
+                    'nickname': tmp_member_info.nickname,
+                    'avatar_url': tmp_member_info.avatar,
+                }
+            }
+            data_list.append(tmp_data)
+    resp['data']['list'] = data_list
+    resp['data']['count'] = query.count()
+    return jsonify(resp)

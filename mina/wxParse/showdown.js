@@ -99,10 +99,6 @@ function getDefaultOpts(simple) {
     return ret;
 }
 
-/**
- * Created by Tivie on 06-01-2015.
- */
-
 // Private properties
 var showdown = {},
     parsers = {},
@@ -110,6 +106,7 @@ var showdown = {},
     globalOptions = getDefaultOpts(true),
     flavor = {
         github: {
+            omitExtraWLInCodeBlocks: true,
             omitExtraWLInCodeBlocks: true,
             prefixHeaderId: 'user-content-',
             simplifiedAutoLink: true,
@@ -697,10 +694,6 @@ if (showdown.helper.isUndefined(console)) {
         }
     };
 }
-
-/**
- * Created by Estevao on 31-05-2015.
- */
 
 /**
  * Showdown Converter class

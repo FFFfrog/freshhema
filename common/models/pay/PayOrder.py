@@ -28,6 +28,9 @@ class PayOrder(db.Model):
     updated_time = db.Column(db.DateTime, nullable=False, server_default=db.FetchedValue())
     created_time = db.Column(db.DateTime, nullable=False, server_default=db.FetchedValue())
     deadline = db.Column(db.DateTime, nullable=False, server_default=db.FetchedValue())
+    express_time = db.Column(db.DateTime, nullable=False, server_default=db.FetchedValue())
+    confirm_time = db.Column(db.DateTime, nullable=False, server_default=db.FetchedValue())
+    express_deadline = db.Column(db.DateTime, nullable=False, server_default=db.FetchedValue())
 
     @property
     def pay_status(self):

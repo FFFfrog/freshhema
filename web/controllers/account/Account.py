@@ -3,7 +3,7 @@ from flask import Blueprint, request, redirect, jsonify
 from common.libs.user.Helper import ops_render, iPagination, getCurrentDate
 from common.libs.UrlManager import UrlManager
 from common.libs.user.UserService import UserService
-# from common.models.log.AppAccessLog import AppAccessLog
+from common.models.log.AppAccessLog import AppAccessLog
 from common.models.User import User
 from sqlalchemy import or_
 from application import app, db
@@ -78,7 +78,7 @@ def set():
         resp_data['info'] = info
         return ops_render("account/set.html", resp_data)
 
-    resp = {'code': 200, 'msg': '操作成功~~', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
 
     id = req['id'] if 'id' in req else 0
@@ -90,33 +90,33 @@ def set():
 
     if nickname is None or len(nickname) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的姓名~~"
+        resp['msg'] = "请输入符合规范的姓名"
         return jsonify(resp)
 
     if mobile is None or len(mobile) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的手机号码~~"
+        resp['msg'] = "请输入符合规范的手机号码"
         return jsonify(resp)
 
     if email is None or len(email) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的邮箱~~"
+        resp['msg'] = "请输入符合规范的邮箱"
         return jsonify(resp)
 
     if login_name is None or len(login_name) < 1:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的登录用户名~~"
+        resp['msg'] = "请输入符合规范的登录用户名"
         return jsonify(resp)
 
     if login_pwd is None or len(email) < 6:
         resp['code'] = -1
-        resp['msg'] = "请输入符合规范的登录密码~~"
+        resp['msg'] = "请输入符合规范的登录密码"
         return jsonify(resp)
 
     has_in = User.query.filter(User.login_name == login_name, User.uid != id).first()
     if has_in:
         resp['code'] = -1
-        resp['msg'] = "该登录名已存在，请换一个试试~~"
+        resp['msg'] = "该登录名已存在，请换一个试试"
         return jsonify(resp)
 
     user_info = User.query.filter_by(uid=id).first()

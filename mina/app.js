@@ -7,8 +7,8 @@ App({
         version: "1.0",
         shopName: "荷马先生订购系统",
         // domain:"http://10.62.19.64:8999/api"
-        domain: "http://10.62.73.160:8999/api"
-        // domain:"http://192.168.43.15:8999/api"
+        // domain: "http://10.62.73.160:8999/api"
+        domain: "http://192.168.43.15:8999/api"
     },
     tip: function (params) {
         var that = this;
